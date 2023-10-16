@@ -14,9 +14,10 @@ export class HomeComponent implements OnInit {
   constructor() {}
 
   genres: String[] = ["House", "Alternative", "J-Rock", "R&B"];
-  selectedGenre: String = "";
+  selectedGenre: String = "rock";
   authLoading: boolean = false;
   configLoading: boolean = false;
+  tracks: any;
   token: String = "";
 
   ngOnInit(): void {
@@ -49,7 +50,10 @@ export class HomeComponent implements OnInit {
     this.configLoading = true;
     const response = await fetchFromSpotify({
       token: t,
-      endpoint: "recommendations/available-genre-seeds",
+      endpoint: "search?q=genre%3Arock&type=track&market=US",
+      // endpoint: `search?q=genre:"${this.selectedGenre}"&type=artist&type=tracks`,
+      // endpoint: "recommendations/available-genre-seeds",
+      // endpoint: "search?genre:`${genre}`&limit=50",
     });
     console.log(response);
     this.genres = response.genres;
