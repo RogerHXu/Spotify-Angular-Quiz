@@ -6,8 +6,7 @@ import { DataService } from "src/track-data.service";
 
 const AUTH_ENDPOINT =
   "https://nuod0t2zoe.execute-api.us-east-2.amazonaws.com/FT-Classroom/spotify-auth-token";
-// const TOKEN_KEY = "whos-who-access-token";
-const TOKEN_KEY = "my-access_token";
+  const TOKEN_KEY = "whos-who-access-token";
 
 @Component({
   selector: "app-home",
@@ -46,9 +45,8 @@ export class HomeComponent implements OnInit {
     console.log("Sending request to AWS endpoint");
     request(AUTH_ENDPOINT).then(({ access_token, expires_in }) => {
       const newToken = {
-        value:
-          "BQCzY3hdyLYdMVdjCptpj0zHWHBgpAxyZNIdFuqWROihNXrqIjzIVSIrZH89lTXH00qkOTB0pP3NcZojSUI0JJtMVqpqin8yGorSdBoMqoxMQFbGv2s",
-        expiration: Date.now() + 3600,
+        value: access_token,
+        expiration: Date.now() + (expires_in - 20) * 1000,
       };
       localStorage.setItem(TOKEN_KEY, JSON.stringify(newToken));
       this.authLoading = false;
