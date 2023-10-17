@@ -7,4 +7,19 @@
       {{ genre }}
     </option>
   </select>
+  Number of artists:
+  <select [(ngModel)]="selectedArtist" (ngModelChange)="setArtist($event)">
+    <option [value]=""></option>
+    <option [value]="artist" *ngFor="let artist of artists">
+      {{ artist }}
+    </option>
+  </select>
+  Number of songs:
+  <select [(ngModel)]="selectedSong" (ngModelChange)="setSong($event)">
+    <option [value]=""></option>
+    <option [value]="song" *ngFor="let song of songs">
+      {{ song }}
+    </option>
+  </select>
+  <button class="submit-button" (click)="letsPlay()">Let's Play A Game</button>
 </div>
