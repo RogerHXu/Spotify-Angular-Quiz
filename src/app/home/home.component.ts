@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import fetchFromSpotify, { request } from "../../services/api";
+import { Router } from "@angular/router";
 import { slice } from "lodash";
+import { DataService } from "src/track-data.service";
 
 const AUTH_ENDPOINT =
   "https://nuod0t2zoe.execute-api.us-east-2.amazonaws.com/FT-Classroom/spotify-auth-token";
@@ -12,15 +14,14 @@ const TOKEN_KEY = "my-access_token";
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.css"],
 })
-
 export class HomeComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router, private dataService: DataService) {}
 
   genres: String[] = ["House", "Alternative", "J-Rock", "R&B"];
   selectedGenre: String = "";
-  artists: number[] = [2,3,4]
+  artists: number[] = [2, 3, 4];
   selectedArtist: number = 2;
-  songs: number[] = [1,2,3]
+  songs: number[] = [1, 2, 3];
   selectedSong: number = 1;
 
   artistTrackArray: any;
@@ -46,7 +47,7 @@ export class HomeComponent implements OnInit {
     request(AUTH_ENDPOINT).then(({ access_token, expires_in }) => {
       const newToken = {
         value:
-          "BQDjIdoKZXDWXt6KDhtucLk3EcpNE9-1Rp-9oInGb0jKv_e2KCl_k9w3m3fUw__3w7Yz86G6XS4-ydnPPDBSqNzMJcYXIXDfydpDRr_M9EReDFyi344",
+          "BQCzY3hdyLYdMVdjCptpj0zHWHBgpAxyZNIdFuqWROihNXrqIjzIVSIrZH89lTXH00qkOTB0pP3NcZojSUI0JJtMVqpqin8yGorSdBoMqoxMQFbGv2s",
         expiration: Date.now() + 3600,
       };
       localStorage.setItem(TOKEN_KEY, JSON.stringify(newToken));
@@ -104,7 +105,7 @@ export class HomeComponent implements OnInit {
       token: t,
       //endpoint: "search?q=genre%3Arock&type=track&market=US",
       // endpoint: `search?q=genre:"${this.selectedGenre}"&type=artist&type=tracks`,
-       endpoint: "recommendations/available-genre-seeds",
+      endpoint: "recommendations/available-genre-seeds",
       // endpoint: endpoint: "search?q=genre%3Apop&type=track&market=US&limit=500",
     });
     // console.log(response);
@@ -118,36 +119,40 @@ export class HomeComponent implements OnInit {
     console.log(TOKEN_KEY);
   }
 
-  setArtist(selectedArtist: number){
-    this.selectedArtist = selectedArtist
+  setArtist(selectedArtist: number) {
+    this.selectedArtist = selectedArtist;
   }
 
-  setSong(selectedSong: number){
-    this.selectedSong = selectedSong
+  setSong(selectedSong: number) {
+    this.selectedSong = selectedSong;
   }
 
   letsPlay = async () => {
     const response = await fetchFromSpotify({
       token: this.token,
       endpoint: `search?q=genre%3A${this.selectedGenre}&type=track&market=US&limit=50`,
-
     });
-    console.log(response);
+    // console.log(response);
     const tracks = await this.mapSpotifyResponseToTracks(response);
     const uniqueTracks = this.removeDuplicate(tracks);
     const shuffled = this.shuffleArr(uniqueTracks, this.selectedArtist);
     console.log(shuffled);
+    if (this.shuffleArr.length > 0) {
+      this.dataService.setStoredData(shuffled, this.selectedSong);
+      this.router.navigate(["/quiz"]);
+    } else {
+      console.log("No data available for quiz");
+    }
     //maybe implement some sort of logic to make sure the number of songs in shuffle is always >= selecteArtist
-  }
+  };
 
-  removeDuplicate (tracks: any){
-    const unique = new Set()
+  removeDuplicate(tracks: any) {
+    const unique = new Set();
     return tracks.filter((track: any) => {
-      const key = `${track.artistId}`
-      if(unique.has(key)) return false;
-      else unique.add(key)
-      return true
-    })
+      const key = `${track.artistId}`;
+      if (unique.has(key)) return false;
+      else unique.add(key);
+      return true;
+    });
   }
-
 }

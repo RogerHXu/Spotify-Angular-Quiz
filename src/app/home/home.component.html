@@ -1,25 +1,37 @@
-<div *ngIf="authLoading || configLoading">Loading...</div>
-<div *ngIf="!authLoading && !configLoading">
-  Genre:
-  <select [(ngModel)]="selectedGenre" (ngModelChange)="setGenre($event)">
-    <option [value]=""></option>
-    <option [value]="genre" *ngFor="let genre of genres">
-      {{ genre }}
-    </option>
-  </select>
-  Number of artists:
-  <select [(ngModel)]="selectedArtist" (ngModelChange)="setArtist($event)">
-    <option [value]=""></option>
-    <option [value]="artist" *ngFor="let artist of artists">
-      {{ artist }}
-    </option>
-  </select>
-  Number of songs:
-  <select [(ngModel)]="selectedSong" (ngModelChange)="setSong($event)">
-    <option [value]=""></option>
-    <option [value]="song" *ngFor="let song of songs">
-      {{ song }}
-    </option>
-  </select>
+<div class="container">
+  <div *ngIf="authLoading || configLoading">Loading...</div>
+  <div *ngIf="!authLoading && !configLoading" class="select-container">
+    <div>
+      Genre:
+      <select [(ngModel)]="selectedGenre" (ngModelChange)="setGenre($event)">
+        <option [value]=""></option>
+        <option [value]="genre" *ngFor="let genre of genres">
+          {{ genre }}
+        </option>
+      </select>
+    </div>
+    <div>
+      Number of artists:
+      <select [(ngModel)]="selectedArtist" (ngModelChange)="setArtist($event)">
+        <option [value]=""></option>
+        <option [value]="artist" *ngFor="let artist of artists">
+          {{ artist }}
+        </option>
+      </select>
+    </div>
+    <div>
+      Number of songs:
+      <select [(ngModel)]="selectedSong" (ngModelChange)="setSong($event)">
+        <option [value]=""></option>
+        <option
+          [value]="song"
+          *ngFor="let song of songs"
+          [disabled]="song >= selectedArtist"
+        >
+          {{ song }}
+        </option>
+      </select>
+    </div>
+  </div>
   <button class="submit-button" (click)="letsPlay()">Let's Play A Game</button>
 </div>
