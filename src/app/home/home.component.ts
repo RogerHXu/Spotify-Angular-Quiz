@@ -134,7 +134,20 @@ export class HomeComponent implements OnInit {
     });
     console.log(response);
     const tracks = await this.mapSpotifyResponseToTracks(response);
-    const shuffled = this.shuffleArr(tracks, this.selectedArtist);
+    const uniqueTracks = this.removeDuplicate(tracks);
+    const shuffled = this.shuffleArr(uniqueTracks, this.selectedArtist);
     console.log(shuffled);
+    //maybe implement some sort of logic to make sure the number of songs in shuffle is always >= selecteArtist
   }
+
+  removeDuplicate (tracks: any){
+    const unique = new Set()
+    return tracks.filter((track: any) => {
+      const key = `${track.artistId}`
+      if(unique.has(key)) return false;
+      else unique.add(key)
+      return true
+    })
+  }
+
 }
