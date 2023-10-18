@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.tracks-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.artists-column {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

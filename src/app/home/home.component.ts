@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
     request(AUTH_ENDPOINT).then(({ access_token, expires_in }) => {
       const newToken = {
         value:
-          "BQCzY3hdyLYdMVdjCptpj0zHWHBgpAxyZNIdFuqWROihNXrqIjzIVSIrZH89lTXH00qkOTB0pP3NcZojSUI0JJtMVqpqin8yGorSdBoMqoxMQFbGv2s",
+          "BQAvLeJU0BEULSlPxy1aWt9Zck0lHSYMIEO6ZPTzcPnzTlfJn2Z8MUWBiCW1gpUniKf_XKoSF-es_Z8NWnk4nmRbmzWN1lhM-nG1esGcsxqUFLTJdpk",
         expiration: Date.now() + 3600,
       };
       localStorage.setItem(TOKEN_KEY, JSON.stringify(newToken));

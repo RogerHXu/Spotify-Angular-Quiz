@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { DataService } from "src/track-data.service";
+import { TrackData, TrackDataWithSelection } from "src/track.interface";
 import {
-  TrackData,
-  TrackDataArray,
-  TrackDataWithSelection,
-} from "src/track.interface";
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from "@angular/cdk/drag-drop";
 
 @Component({
   selector: "app-quiz",
@@ -24,5 +25,26 @@ export class QuizComponent implements OnInit {
         console.log("Subscribed to Quiz Component", this.trackData);
       }
     );
+  }
+  // drop(event: CdkDragDrop<TrackData[]>) {
+  //   console.log(event);
+  // }
+
+  drop(event: CdkDragDrop<TrackDataWithSelection[]>): void {
+    // Get the dragged item's data
+    const draggedItemData = event.item.data;
+
+    // Determine whether the item was dropped into the tracks container or artists container
+    if (event.previousContainer !== event.container) {
+      // Item was dropped from artists to tracks
+      console.log("Dropped into tracks:", draggedItemData);
+    } else {
+      // Item was reordered within the same container
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
   }
 }
