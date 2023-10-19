@@ -14,10 +14,11 @@ import {
   styleUrls: ["./quiz.component.css"],
 })
 export class QuizComponent implements OnInit {
-  // trackData: TrackDataWithSelection | undefined;
-  arrayTruckData: TrackData[] = [];
+  trackData: TrackDataWithSelection | undefined;
+  arrayTrackData: TrackData[] = [];
   arrayArtistData: TrackData[] = [];
   droppedArtistArray: TrackData[] = [];
+  showModal: boolean = false;
   private trackDataSubscription: Subscription | undefined;
   constructor(private dataService: DataService) {}
   trackList: any;
@@ -25,15 +26,44 @@ export class QuizComponent implements OnInit {
   ngOnInit(): void {
     this.trackDataSubscription = this.dataService.storedData$.subscribe(
       (data) => {
-        // this.trackData = data;
-        this.arrayTruckData = data.trackData;
-        this.arrayArtistData = [...this.arrayTruckData];
-        console.log("The arra of data is:", this.arrayTruckData);
+        this.trackData = data;
+        this.arrayTrackData = data.trackData.slice(
+          0,
+          this.trackData.selectedTracks
+        );
+        this.arrayArtistData = [...data.trackData];
+        console.log("The arra of data is:", this.arrayTrackData);
         // this.arrayTruckData = data.trackData;
         // console.log("Subscribed to Quiz Component", this.trackData);
       }
     );
   }
+  toggleModal() {
+    this.showModal = !this.showModal;
+  }
+  onCloseModal() {
+    this.showModal = false;
+  }
+  checkWinner() {
+    if (this.droppedArtistArray.length === this.arrayTrackData.length) {
+      // Check if all items in droppedArtistArray exist in arrayTrackData
+      const isAllItemsExist = this.droppedArtistArray.every((artist) => {
+        return this.arrayTrackData.some(
+          (track) => track.trackId === artist.trackId
+        );
+      });
+
+      if (isAllItemsExist) {
+        this.toggleModal();
+        console.log("You won! All items are in arrayTrackData.");
+      } else {
+        console.log("You lost! Not all items are in arrayTrackData.");
+      }
+    } else {
+      console.log("You lost! Number of items do not match.");
+    }
+  }
+
   drop(event: CdkDragDrop<TrackData[]>): void {
     // Get the dragged item's data
     const draggedItemData = event.item.data;

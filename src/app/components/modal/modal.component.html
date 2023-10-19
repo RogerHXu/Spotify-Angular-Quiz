@@ -1,0 +1,8 @@
+<div *ngIf="showModal" class="modal-overlay">
+  <div class="modal user-card">
+    <!-- Display user information here -->
+    <ng-content></ng-content>
+
+    <button class="close-button" (click)="onCloseModal()">X</button>
+  </div>
+</div>

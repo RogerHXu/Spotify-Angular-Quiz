@@ -1,15 +1,15 @@
 <main cdkDropListGroup class="main">
   <!-- Track Items -->
   <div
-    *ngIf="arrayTruckData"
+    *ngIf="arrayTrackData"
     class="container"
     cdkDropList
-    [cdkDropListData]="arrayTruckData"
+    [cdkDropListData]="arrayTrackData"
     (cdkDropListDropped)="drop($event)"
   >
     <app-tracks
       class="tracks-row"
-      *ngFor="let track of arrayTruckData"
+      *ngFor="let track of arrayTrackData"
       cdkDrag
       [trackData]="track"
     ></app-tracks>
@@ -39,4 +39,9 @@
       cdkDrag
     ></app-artist>
   </div>
+
+  <button class="submit-button" (click)="checkWinner()">Submit</button>
+  <app-modal [showModal]="showModal" (closeModal)="onCloseModal()">
+    <app-win-card></app-win-card>
+  </app-modal>
 </main>

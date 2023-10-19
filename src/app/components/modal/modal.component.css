@@ -1,0 +1,59 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100; /* Ensure it's above other content */
+}
+
+/* Style for the modal itself */
+/* .modal {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px; /* Adjust as needed */
+/* padding: 20px; */
+/* }  */
+.close-button {
+  position: absolute;
+  top: 100px;
+  right: 100px;
+
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgb(250, 250, 250);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.close-button:hover {
+  background-color: rgba(235, 13, 13, 0.2);
+  transition: background-color 0.2s;
+}
+
+/* .user-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Vertically center content */
+/* border: 1px solid #ccc; */
+/* padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px; /* Adjust as needed */
+/* margin: 0 auto; /* Center horizontally */
+/* background-color: #fff; */
+/* } */
