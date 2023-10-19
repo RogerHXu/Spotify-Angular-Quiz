@@ -1,7 +1,7 @@
 <main cdkDropListGroup class="main">
   <!-- Track Items -->
   <div class="container">
-    <app-player *ngFor="let track of arrayTrackData" [trackData]="track">
+    <app-player *ngFor="let track of arrayTrackData" [trackData]="track" (callQuiz)="getAnswerFromPlayer($event)">
     </app-player>
   </div>
 

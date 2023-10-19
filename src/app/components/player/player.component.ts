@@ -20,7 +20,6 @@ export class PlayerComponent implements OnInit {
   trackData!: TrackData;
 
   droppedArtistArray = <TrackData[]>[]
-
   playBtnIcon = faPlay;
   faVolume = faVolumeHigh;
   song: Howl;
@@ -28,7 +27,11 @@ export class PlayerComponent implements OnInit {
   title: string | null;
 
   public indicatorMode: 'pause' | 'play' | 'replay'= 'play';
-  private playing: boolean = false;
+
+  @Output()
+  callQuiz = new EventEmitter();
+
+  answer!: { [key: string]: boolean; };
 
   constructor() {
     this.song = null as any,
@@ -102,11 +105,13 @@ export class PlayerComponent implements OnInit {
       this.droppedArtistArray = [event.item.data];
     }
     
-    if(this.droppedArtistArray[0].trackId != this.trackData.trackId){
-      console.log("wrong")
+    let id = this.trackData.trackId 
+    if(this.droppedArtistArray[0].trackId != this.trackData.trackId){ 
+      this.answer = {[id]: false }
     }else{
-      console.log("right")
+      this.answer = {[id]: true }
     }
+    this.callQuiz.emit(this.answer);
   }
 
 }

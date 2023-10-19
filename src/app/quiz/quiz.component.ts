@@ -24,7 +24,8 @@ export class QuizComponent implements OnInit {
   constructor(private dataService: DataService) {}
   trackList: any;
   artistList: any;
-  
+
+  answerChecks: { [key: string]: boolean; }[] = [];
 
 
   ngOnInit(): void {
@@ -70,6 +71,16 @@ export class QuizComponent implements OnInit {
       );
     } else {
       this.droppedArtistArray = [event.item.data];
+    }
+  }
+
+  getAnswerFromPlayer($event: { [key: string]: boolean; }){
+    const i = this.answerChecks.findIndex(_element => Object.keys(_element)[0] === Object.keys($event)[0])   
+    if(i === -1){
+      this.answerChecks = this.answerChecks.concat($event);
+    } 
+    else {
+      this.answerChecks[i] = $event
     }
   }
   

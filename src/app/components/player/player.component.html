@@ -1,7 +1,7 @@
 <div class="music-container" id="music-container">
   <div class="music-info">
     <--div class="artist_ph"><--div>
-        <div id="droppedArtistArray" cdkDropList [cdkDropListSortingDisabled]="true"
+        <div id="droppedArtistArray" cdkDropList [cdkDropListSortingDisabled]="true" [cdkDropListDisabled]="true"
           [cdkDropListData]="droppedArtistArray" cdkDropListConnectedTo="arrayArtistData" class="artist-list"
           (cdkDropListDropped)="drop($event)">
           
