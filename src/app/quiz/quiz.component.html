@@ -40,3 +40,11 @@
     ></app-artist>
   </div>
 </main>
+<div>
+    <div *ngIf = "arrTrackData">
+        <app-player
+          *ngFor="let track of arrTrackData"
+          [trackData]="track"
+        ></app-player>
+      </div>
+</div>

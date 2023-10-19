@@ -102,10 +102,7 @@ export class HomeComponent implements OnInit {
     this.configLoading = true;
     const response = await fetchFromSpotify({
       token: t,
-      //endpoint: "search?q=genre%3Arock&type=track&market=US",
-      // endpoint: `search?q=genre:"${this.selectedGenre}"&type=artist&type=tracks`,
       endpoint: "recommendations/available-genre-seeds",
-      // endpoint: endpoint: "search?q=genre%3Apop&type=track&market=US&limit=500",
     });
     // console.log(response);
     this.genres = response.genres;

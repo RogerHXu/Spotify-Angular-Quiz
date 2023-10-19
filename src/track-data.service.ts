@@ -18,8 +18,8 @@ export class DataService {
 
   setStoredData(trackDataArray: TrackData[], selectedTracks: number): void {
     // Perform any data processing or actions here
-    console.log("Received data:", trackDataArray);
-    console.log("Received number of Tracks:", selectedTracks);
+    //console.log("Received data:", trackDataArray);
+    //console.log("Received number of Tracks:", selectedTracks);
 
     // Create an object that combines track data and selected tracks
     const dataWithSelection: TrackDataWithSelection = {
@@ -33,4 +33,6 @@ export class DataService {
   getStoredData(): Observable<TrackDataWithSelection> {
     return this.storedData$;
   }
+
+  
 }

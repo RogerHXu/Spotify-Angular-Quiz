@@ -1,0 +1,16 @@
+<div class="music-container" id="music-container">
+    <div class="music-info">
+        <h2 id="title" class="title">{{title}}</h2>
+        <div class="progress-container" id="progress-container">
+          <div class="progress" id="progress"></div>
+        </div>
+      </div>
+      <div class="navigation">
+        <button id="play" class="action-btn action-btn-big" (click)="toggleState()">
+            <fa-icon [icon]="playBtnIcon"></fa-icon>
+        </button>
+        <button id="volume" class="action-btn">
+            <fa-icon [icon]="faVolume"></fa-icon>
+        </button>
+      </div>
+</div>
