@@ -32,12 +32,11 @@ html {
   background-color: lightgreen;
   /* Add other track-specific styles */
 }
-/* .main {
-  
-  margin: 60px; 
-  box-sizing: border-box; 
-  overflow: auto; 
-}  */
+.main {
+  margin: 60px;
+  box-sizing: border-box;
+  overflow: auto;
+}
 
 .container {
   margin-top: 60px;
@@ -55,7 +54,7 @@ html {
 .artists-column {
   margin-top: 40px;
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }

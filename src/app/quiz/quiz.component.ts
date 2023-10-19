@@ -19,6 +19,7 @@ export class QuizComponent implements OnInit {
   arrayArtistData: TrackData[] = [];
   droppedArtistArray: TrackData[] = [];
   showModal: boolean = false;
+  isWinnerCard: boolean = false;
   private trackDataSubscription: Subscription | undefined;
   constructor(private dataService: DataService) {}
   trackList: any;
@@ -55,11 +56,16 @@ export class QuizComponent implements OnInit {
 
       if (isAllItemsExist) {
         this.toggleModal();
+        this.isWinnerCard = true;
         console.log("You won! All items are in arrayTrackData.");
       } else {
+        this.toggleModal();
+        this.isWinnerCard = false;
         console.log("You lost! Not all items are in arrayTrackData.");
       }
     } else {
+      this.toggleModal();
+      this.isWinnerCard = false;
       console.log("You lost! Number of items do not match.");
     }
   }
