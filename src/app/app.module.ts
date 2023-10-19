@@ -8,7 +8,7 @@ import { HomeComponent } from "./home/home.component";
 import { QuizComponent } from "./quiz/quiz.component";
 import { ArtistComponent } from "./components/artist/artist.component";
 import { DragDropModule } from "@angular/cdk/drag-drop";
-import { TracksComponent } from "./components/components/tracks/tracks.component";
+import { TracksComponent } from "./components/tracks/tracks.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PlayerComponent } from './components/player/player.component';
 
@@ -24,7 +24,7 @@ const routes: Routes = [
     QuizComponent,
     ArtistComponent,
     TracksComponent,
-   PlayerComponent,],
+   PlayerComponent],
   imports: [
     BrowserModule,
     FormsModule,

@@ -1,50 +1,13 @@
 <main cdkDropListGroup class="main">
   <!-- Track Items -->
-  <div
-    *ngIf="arrayTruckData"
-    class="container"
-    cdkDropList
-    [cdkDropListData]="arrayTruckData"
-    (cdkDropListDropped)="drop($event)"
-  >
-    <app-tracks
-      class="tracks-row"
-      *ngFor="let track of arrayTruckData"
-      cdkDrag
-      [trackData]="track"
-    ></app-tracks>
+  <div class="container">
+    <app-player *ngFor="let track of arrayTrackData" [trackData]="track">
+    </app-player>
   </div>
-  <ul
-    class="drop-area"
-    cdkDropList
-    [cdkDropListData]="droppedArtistArray"
-    (cdkDropListDropped)="drop($event)"
-  >
-    <li *ngFor="let artist of droppedArtistArray" cdkDrag>
-      <app-artist [trackData]="artist" cdkDrag></app-artist>
-    </li>
-  </ul>
 
   <!-- Artist Items -->
-  <div
-    *ngIf="arrayArtistData"
-    class="artists-column"
-    cdkDropList
-    [cdkDropListData]="arrayArtistData"
-    (cdkDropListDropped)="drop($event)"
-  >
-    <app-artist
-      *ngFor="let artist of arrayArtistData"
-      [trackData]="artist"
-      cdkDrag
-    ></app-artist>
+  <div id="arrayArtistData" *ngIf="arrayArtistData" class="artists-column" cdkDropList
+    [cdkDropListData]="arrayArtistData" cdkDropListConnectedTo="droppedArtistArray" (cdkDropListDropped)="drop($event)">
+    <app-artist *ngFor="let artist of arrayArtistData" [trackData]="artist" cdkDrag [cdkDragData]="artist"></app-artist>
   </div>
 </main>
-<div>
-    <div *ngIf = "arrTrackData">
-        <app-player
-          *ngFor="let track of arrTrackData"
-          [trackData]="track"
-        ></app-player>
-      </div>
-</div>

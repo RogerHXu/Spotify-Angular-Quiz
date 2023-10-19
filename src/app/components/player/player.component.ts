@@ -1,8 +1,14 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { Howl, Howler } from 'howler';
-import { faPause, faPlay, faVolumeDown, faAmbulance} from '@fortawesome/free-solid-svg-icons';
+import { faPause, faPlay, faVolumeHigh, faRotateLeft} from '@fortawesome/free-solid-svg-icons';
 
 import { TrackData } from 'src/track.interface';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+  CdkDrag
+} from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-player',
@@ -13,12 +19,10 @@ export class PlayerComponent implements OnInit {
   @Input()
   trackData!: TrackData;
 
-  @Output() onStart = new EventEmitter<void>();
-  @Output() onPause = new EventEmitter<void>();
-  @Output() onEnd = new EventEmitter<void>();
+  droppedArtistArray = <TrackData[]>[]
 
   playBtnIcon = faPlay;
-  faVolume = faVolumeDown;
+  faVolume = faVolumeHigh;
   song: Howl;
   sourceUrl: string | null;
   title: string | null;
@@ -76,17 +80,33 @@ export class PlayerComponent implements OnInit {
     this.indicatorMode = 'play'
     this.playBtnIcon = faPlay
     this.song.pause();
-    this.onPause.emit()
   }
 
   private finish(){
-    this.playBtnIcon = faAmbulance
+    this.playBtnIcon = faRotateLeft
     this.indicatorMode = 'play'
-    this.onEnd.emit()
   }
 
   public volume(val: number) {
     Howler.volume(val)
+  }
+
+  drop(event: CdkDragDrop<TrackData[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      this.droppedArtistArray = [event.item.data];
+    }
+    
+    if(this.droppedArtistArray[0].trackId != this.trackData.trackId){
+      console.log("wrong")
+    }else{
+      console.log("right")
+    }
   }
 
 }

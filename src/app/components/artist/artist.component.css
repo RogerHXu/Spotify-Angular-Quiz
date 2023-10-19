@@ -20,17 +20,6 @@
   position: relative;
 }
 
-.spotify-logo {
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  border-radius: 50%;
-  background-color: white;
-  padding: 5px;
-}
-
 .artist-name {
   width: 150px;
   background-color: rgba(0, 0, 0, 0.7);

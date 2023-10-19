@@ -1,16 +1,20 @@
 <div class="music-container" id="music-container">
-    <div class="music-info">
-        <h2 id="title" class="title">{{title}}</h2>
-        <div class="progress-container" id="progress-container">
-          <div class="progress" id="progress"></div>
+  <div class="music-info">
+    <--div class="artist_ph"><--div>
+        <div id="droppedArtistArray" cdkDropList [cdkDropListSortingDisabled]="true"
+          [cdkDropListData]="droppedArtistArray" cdkDropListConnectedTo="arrayArtistData" class="artist-list"
+          (cdkDropListDropped)="drop($event)">
+          
+          <app-artist *ngFor="let arty of droppedArtistArray" [trackData]="arty"  cdkDrag [cdkDragData]="arty"></app-artist>
         </div>
-      </div>
-      <div class="navigation">
-        <button id="play" class="action-btn action-btn-big" (click)="toggleState()">
-            <fa-icon [icon]="playBtnIcon"></fa-icon>
-        </button>
-        <button id="volume" class="action-btn">
-            <fa-icon [icon]="faVolume"></fa-icon>
-        </button>
-      </div>
+        <h3 id="title" class="title">{{title}}</h3>
+  </div>
+  <div class="navigation">
+    <div class="progress-container" id="progress-container">
+      <div class="progress" id="progress"></div>
+    </div>
+    <button id="play" class="action-btn play-btn" (click)="toggleState()">
+      <fa-icon [icon]="playBtnIcon"></fa-icon>
+    </button>
+  </div>
 </div>
