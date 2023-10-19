@@ -52,7 +52,6 @@ export class QuizComponent implements OnInit {
         // this.trackData = data;
         this.arrayTrackData = data.trackData;
         this.arrayArtistData = [...this.arrayTrackData];
-        console.log("The arra of data is:", this.arrayTrackData);
         // this.arrayTruckData = data.trackData;
         // console.log("Subscribed to Quiz Component", this.trackData);
         this.trackData = data;
@@ -61,7 +60,6 @@ export class QuizComponent implements OnInit {
           this.trackData.selectedTracks
         );
         this.arrayArtistData = [...data.trackData];
-        console.log("The array of data is:", this.arrayTrackData);
       }
     );
   }
@@ -76,14 +74,19 @@ export class QuizComponent implements OnInit {
   }
 
   checkWinner() {
-    if (this.droppedArtistArray.length === this.arrayTrackData.length) {
+    /*if (this.droppedArtistArray.length === this.arrayTrackData.length) {
       const isAllItemsExist = this.droppedArtistArray.every((artist) => {
         return this.arrayTrackData.some(
           (track) => track.trackId === artist.trackId
         );
-      });
+      });*/
+      let results = this.answerChecks.map(r => {return Object.values(r)[0]})
+      let rightChoice = true;
+      results.forEach( result => {
+        if(result === false) rightChoice = false;
+      })
 
-      if (isAllItemsExist) {
+      if (rightChoice) {
         this.score += 10;
         localStorage.setItem("score", this.score.toString()); // Save score to local storage
         this.toggleModal();
@@ -99,15 +102,15 @@ export class QuizComponent implements OnInit {
 
         console.log("You lost! Number of items do not match.");
       }
-    } else {
+    } /*else {
       this.toggleModal();
       this.isWinnerCard = false;
       // Set the score to 0 in local storage when not all items match
       this.score = 0;
       localStorage.setItem("score", "0");
       console.log("You lost! Number of items do not match.");
-    }
-  }
+    }*/
+  
 
   onPlayButtonClicked() {
     console.log("Clicked from quiz Component");

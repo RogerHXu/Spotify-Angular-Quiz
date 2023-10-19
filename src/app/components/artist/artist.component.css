@@ -1,17 +1,15 @@
 .artist-card {
-  width: 150px;
-  height: 200px;
-  border: 1px solid #ccc;
+  width: 191px;
+  height: 184px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #181818;
   border-radius: 8px;
   overflow: hidden;
-
   display: flex;
   flex-direction: column;
   /* justify-content: flex-end; */
   align-items: center;
   position: relative;
-  margin: 10px;
 }
 
 .background-image {

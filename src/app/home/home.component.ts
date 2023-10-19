@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
     console.log("Sending request to AWS endpoint");
     request(AUTH_ENDPOINT).then(({ access_token, expires_in }) => {
       const newToken = {
-        value: "BQDiuna-GEPEu4zdjjRtALu1pSvkrBT2jxJSnG3hynLFMee5PmJR3REHScGXbzMZ0b_oMqJ3ueB26qgcEbEEffQ4ov1hiz5sFORWJxhRKIQ33Fls8I8",
+        value: access_token,
         expiration: Date.now() + (expires_in - 20) * 1000,
       };
       localStorage.setItem(TOKEN_KEY, JSON.stringify(newToken));

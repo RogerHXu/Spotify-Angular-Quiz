@@ -30,14 +30,16 @@ const routes: Routes = [
     ModalComponent,
     WinCardComponent,
     LoseCardComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
     DragDropModule,
-   FontAwesomeModule,],
+    FontAwesomeModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
