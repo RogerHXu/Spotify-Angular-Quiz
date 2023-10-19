@@ -1,0 +1,38 @@
+/* Center the content horizontally and vertically */
+.lose-card {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 500px; /* Set a fixed width */
+  height: 400px; /* Set a fixed height */
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+/* Style the button container */
+.button-container {
+  display: flex; /* Display buttons side by side */
+  gap: 10px; /* Add spacing between buttons */
+  margin-top: 20px; /* Adjust top margin as needed */
+}
+
+/* Style the buttons */
+.button-container button {
+  padding: 10px 20px; /* Add padding for button size */
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none; /* Remove button border */
+  border-radius: 5px; /* Add rounded corners */
+  cursor: pointer; /* Change cursor on hover */
+}
+
+/* Style button on hover */
+.button-container button:hover {
+  background-color: #0056b3; /* Change background color on hover */
+}

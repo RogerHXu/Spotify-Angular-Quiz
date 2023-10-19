@@ -11,6 +11,9 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
 import { TracksComponent } from "./components/tracks/tracks.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PlayerComponent } from './components/player/player.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { WinCardComponent } from './components/win-card/win-card.component';
+import { LoseCardComponent } from './components/lose-card/lose-card.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -24,7 +27,10 @@ const routes: Routes = [
     QuizComponent,
     ArtistComponent,
     TracksComponent,
-   PlayerComponent],
+    ModalComponent,
+    WinCardComponent,
+    LoseCardComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,

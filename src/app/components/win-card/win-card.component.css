@@ -1,0 +1,30 @@
+.win-card {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 500px; /* Set a fixed width */
+  height: 400px; /* Set a fixed height */
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+.win-card h2 {
+  margin: 10px; /* Add spacing between items if desired */
+}
+.win-card button {
+  padding: 10px 20px; /* Add padding for button size */
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none; /* Remove button border */
+  border-radius: 5px; /* Add rounded corners */
+  cursor: pointer; /* Change cursor on hover */
+}
+.win-card button:hover {
+  background-color: #0056b3;
+}

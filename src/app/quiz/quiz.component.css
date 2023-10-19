@@ -1,10 +1,10 @@
-body,
+/* body,
 html {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevent scrollbars */
-}
+  overflow: hidden; 
+} */
 
 .drop-area {
   border: #ccc dashed 2px;
@@ -21,7 +21,9 @@ html {
   margin: 20px;
   box-sizing: border-box;
 }
-
+.submit-button {
+  margin: 0 auto;
+}
 .artist-card {
   background-color: lightblue;
   /* Add other artist-specific styles */
@@ -31,10 +33,9 @@ html {
   /* Add other track-specific styles */
 }
 .main {
-  height: 100%; /* Take up the full viewport height */
-  margin: 60px; /* Add a 60px margin on all sides */
-  box-sizing: border-box; /* Include margin within the element's dimensions */
-  overflow: auto; /* Enable scrolling if content overflows */
+  margin: 60px;
+  box-sizing: border-box;
+  overflow: auto;
 }
 
 .container {
@@ -53,7 +54,8 @@ html {
 .artists-column {
   margin-top: 40px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
 }
 

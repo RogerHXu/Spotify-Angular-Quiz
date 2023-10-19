@@ -10,4 +10,17 @@
     [cdkDropListData]="arrayArtistData" cdkDropListConnectedTo="droppedArtistArray" (cdkDropListDropped)="drop($event)">
     <app-artist *ngFor="let artist of arrayArtistData" [trackData]="artist" cdkDrag [cdkDragData]="artist"></app-artist>
   </div>
+
+  <button class="submit-button" (click)="checkWinner()">Submit</button>
+  <app-modal [showModal]="showModal" (closeModal)="onCloseModal()">
+    <app-win-card
+      *ngIf="isWinnerCard"
+      [scoreValue]="score"
+      (playButtonClicked)="onPlayButtonClicked()"
+    ></app-win-card>
+    <app-lose-card
+      *ngIf="!isWinnerCard"
+      (playButtonClicked)="onPlayButtonClicked()"
+    ></app-lose-card>
+  </app-modal>
 </main>
