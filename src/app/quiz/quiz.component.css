@@ -54,7 +54,7 @@ html {
 .artists-column {
   margin-top: 40px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
 }

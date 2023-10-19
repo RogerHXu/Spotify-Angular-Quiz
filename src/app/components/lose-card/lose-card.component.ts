@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 
 @Component({
-  selector: 'app-lose-card',
-  templateUrl: './lose-card.component.html',
-  styleUrls: ['./lose-card.component.css']
+  selector: "app-lose-card",
+  templateUrl: "./lose-card.component.html",
+  styleUrls: ["./lose-card.component.css"],
 })
 export class LoseCardComponent implements OnInit {
+  @Output() playButtonClicked = new EventEmitter<void>();
 
-  constructor() { }
-
-  ngOnInit(): void {
+  onPlayButtonClick() {
+    this.playButtonClicked.emit();
   }
+  constructor() {}
 
+  ngOnInit(): void {}
 }

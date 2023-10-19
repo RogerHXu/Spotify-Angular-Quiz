@@ -14,7 +14,17 @@
   background-color: #fff;
 }
 
-.win-card h2,
-.win-card button {
+.win-card h2 {
   margin: 10px; /* Add spacing between items if desired */
+}
+.win-card button {
+  padding: 10px 20px; /* Add padding for button size */
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none; /* Remove button border */
+  border-radius: 5px; /* Add rounded corners */
+  cursor: pointer; /* Change cursor on hover */
+}
+.win-card button:hover {
+  background-color: #0056b3;
 }
