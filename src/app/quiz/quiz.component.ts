@@ -8,10 +8,9 @@ import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
-  CdkDrag
+  CdkDrag,
 } from "@angular/cdk/drag-drop";
 import { HomeComponent } from "../home/home.component";
-
 
 @Component({
   selector: "app-quiz",
@@ -33,7 +32,7 @@ export class QuizComponent implements OnInit {
   private trackDataSubscription: Subscription | undefined;
   trackList: any;
   artistList: any;
-  answerChecks: { [key: string]: boolean; }[] = [];
+  answerChecks: { [key: string]: boolean }[] = [];
 
   constructor(private dataService: DataService, private router: Router) {}
 
@@ -64,7 +63,6 @@ export class QuizComponent implements OnInit {
     );
   }
 
-
   toggleModal() {
     this.showModal = !this.showModal;
   }
@@ -80,29 +78,31 @@ export class QuizComponent implements OnInit {
           (track) => track.trackId === artist.trackId
         );
       });*/
-      let results = this.answerChecks.map(r => {return Object.values(r)[0]})
-      let rightChoice = true;
-      results.forEach( result => {
-        if(result === false) rightChoice = false;
-      })
+    let results = this.answerChecks.map((r) => {
+      return Object.values(r)[0];
+    });
+    let rightChoice = true;
+    results.forEach((result) => {
+      if (result === false) rightChoice = false;
+    });
 
-      if (rightChoice) {
-        this.score += 10;
-        localStorage.setItem("score", this.score.toString()); // Save score to local storage
-        this.toggleModal();
-        this.isWinnerCard = true;
-        console.log("You won! All items are in arrayTrackData.");
-      } else {
-        this.toggleModal();
-        this.isWinnerCard = false;
-        console.log("You lost! Not all items are in arrayTrackData.");
-        // Set the score to 0 in local storage when not all items match
-        this.score = 0;
-        localStorage.setItem("score", "0");
+    if (rightChoice) {
+      this.score += 10;
+      localStorage.setItem("score", this.score.toString()); // Save score to local storage
+      this.toggleModal();
+      this.isWinnerCard = true;
+      console.log("You won! All items are in arrayTrackData.");
+    } else {
+      this.toggleModal();
+      this.isWinnerCard = false;
+      console.log("You lost! Not all items are in arrayTrackData.");
+      // Set the score to 0 in local storage when not all items match
+      this.score = 0;
+      localStorage.setItem("score", "0");
 
-        console.log("You lost! Number of items do not match.");
-      }
-    } /*else {
+      console.log("You lost! Number of items do not match.");
+    }
+  } /*else {
       this.toggleModal();
       this.isWinnerCard = false;
       // Set the score to 0 in local storage when not all items match
@@ -110,7 +110,6 @@ export class QuizComponent implements OnInit {
       localStorage.setItem("score", "0");
       console.log("You lost! Number of items do not match.");
     }*/
-  
 
   onPlayButtonClicked() {
     console.log("Clicked from quiz Component");
@@ -119,27 +118,52 @@ export class QuizComponent implements OnInit {
     localStorage.setItem("score", this.score.toString());
   }
 
-  drop(event: CdkDragDrop<TrackData[]>) {
+  drop(event: CdkDragDrop<TrackData[]>): void {
     if (event.previousContainer === event.container) {
+      // This handles reordering within the same container.
       moveItemInArray(
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
     } else {
-      this.droppedArtistArray = [event.item.data];
+      // This handles dropping into a different container.
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+
+      // Remove the dropped artist from the source array.
+      const droppedArtist = event.container.data[event.currentIndex];
+      const index = this.arrayArtistData.indexOf(droppedArtist);
+      if (index !== -1) {
+        this.arrayArtistData.splice(index, 1);
+      }
     }
   }
 
-  getAnswerFromPlayer($event: { [key: string]: boolean; }){
-    const i = this.answerChecks.findIndex(_element => Object.keys(_element)[0] === Object.keys($event)[0])   
-    if(i === -1){
+  // drop(event: CdkDragDrop<TrackData[]>) {
+  //   if (event.previousContainer === event.container) {
+  //     moveItemInArray(
+  //       event.container.data,
+  //       event.previousIndex,
+  //       event.currentIndex
+  //     );
+  //   } else {
+  //     this.droppedArtistArray = [event.item.data];
+  //   }
+  // }
+
+  getAnswerFromPlayer($event: { [key: string]: boolean }) {
+    const i = this.answerChecks.findIndex(
+      (_element) => Object.keys(_element)[0] === Object.keys($event)[0]
+    );
+    if (i === -1) {
       this.answerChecks = this.answerChecks.concat($event);
-    } 
-    else {
-      this.answerChecks[i] = $event
+    } else {
+      this.answerChecks[i] = $event;
     }
   }
-  
 }
-
