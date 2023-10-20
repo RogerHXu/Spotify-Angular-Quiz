@@ -1,3 +1,81 @@
+/* body {
+  background-color: #191414;
+} */
+h5 {
+  color: #fff;
+  transition: transform 0.5s ease-in-out;
+  animation: pulsate 1.5s infinite;
+}
+.main {
+  height: 100vh;
+  background-color: #191414;
+}
+/* Flex Row for All Items */
+.flex-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Align items at the top */
+}
+
+/* Artist Items in a Column */
+.artist-container {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center; /* Center horizontally */
+}
+
+.artists-column {
+  margin-top: 60px;
+  display: flex;
+  gap: 20px;
+}
+
+/* Tracks Displayed in a Row in the Middle */
+.track-container {
+  margin: -40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+}
+.container {
+  margin-top: -40px;
+  display: flex;
+  align-items: center;
+}
+
+/* .submit-button {
+  margin: 0 auto;
+} */
+.center-button-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  margin-top: -40px; /* Adjust margin as needed */
+}
+.submit-button {
+  background-color: #1db954; /* Spotify's brand color for the button */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 23px;
+  cursor: pointer;
+  /* transition: transform 0.5s ease-in-out;
+  animation: pulsate 1.5s infinite; */
+}
+/* Keyframes for pulsating button */
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 /* body,
 html {
   height: 100%;
@@ -6,7 +84,7 @@ html {
   overflow: hidden; 
 } */
 
-.drop-area {
+/* .drop-area {
   border: #ccc dashed 2px;
   padding: 20px 10px;
   box-sizing: border-box;
@@ -27,11 +105,11 @@ html {
 .artist-card {
   background-color: lightblue;
   /* Add other artist-specific styles */
-}
+/* }
 .track-card {
   background-color: lightgreen;
   /* Add other track-specific styles */
-}
+/* }
 .main {
   margin: 60px;
   box-sizing: border-box;
@@ -44,9 +122,9 @@ html {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-}
+} */
 
-.tracks-row {
+/* .tracks-row {
   display: flex;
   flex-direction: row;
 }
@@ -57,6 +135,5 @@ html {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-}
-
-
+} 
+ */

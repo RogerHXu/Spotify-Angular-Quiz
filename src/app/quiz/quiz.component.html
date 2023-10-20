@@ -1,17 +1,43 @@
 <main cdkDropListGroup class="main">
-  <!-- Track Items -->
-  <div class="container">
-    <app-player *ngFor="let track of arrayTrackData" [trackData]="track" (callQuiz)="getAnswerFromPlayer($event)">
-    </app-player>
-  </div>
-
   <!-- Artist Items -->
-  <div id="arrayArtistData" *ngIf="arrayArtistData" class="artists-column" cdkDropList
-    [cdkDropListData]="arrayArtistData" cdkDropListConnectedTo="droppedArtistArray" (cdkDropListDropped)="drop($event)">
-    <app-artist *ngFor="let artist of arrayArtistData" [trackData]="artist" cdkDrag [cdkDragData]="artist"></app-artist>
-  </div>
+  <div class="flex-row">
+    <div class="artist-container">
+      <div
+        id="arrayArtistData"
+        *ngIf="arrayArtistData"
+        class="artists-column"
+        cdkDropList
+        [cdkDropListData]="arrayArtistData"
+        cdkDropListConnectedTo="droppedArtistArray"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <app-artist
+          *ngFor="let artist of arrayArtistData"
+          [trackData]="artist"
+          cdkDrag
+          [cdkDragData]="artist"
+        ></app-artist>
+      </div>
+    </div>
+    <!-- Track Items -->
+    <h5>Please Drag And Drop The Corresponding Artist Into The Song Card</h5>
 
-  <button class="submit-button" (click)="checkWinner()">Submit</button>
+    <div class="track-container">
+      <div class="container">
+        <app-player
+          *ngFor="let track of arrayTrackData"
+          [trackData]="track"
+          (callQuiz)="getAnswerFromPlayer($event)"
+        >
+        </app-player>
+      </div>
+    </div>
+  </div>
+  <div class="center-button-container">
+    <button class="submit-button" (click)="checkWinner()">Submit</button>
+  </div>
+  <!-- Artist Items -->
+
   <app-modal [showModal]="showModal" (closeModal)="onCloseModal()">
     <app-win-card
       *ngIf="isWinnerCard"

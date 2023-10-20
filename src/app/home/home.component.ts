@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router, private dataService: DataService) {}
 
   genres: String[] = ["House", "Alternative", "J-Rock", "R&B"];
-  selectedGenre: String = "";
+  selectedGenre: String = "rock";
   artists: number[] = [2, 3, 4];
   selectedArtist: number = 2;
   songs: number[] = [1, 2, 3];
@@ -45,7 +45,9 @@ export class HomeComponent implements OnInit {
     console.log("Sending request to AWS endpoint");
     request(AUTH_ENDPOINT).then(({ access_token, expires_in }) => {
       const newToken = {
-        value: access_token,
+        value:
+          "BQBvA22AeFRx1paeeIgWzONK2vmTq4yGXS087z9hGwCCr3P8CWhAuGfjOm-NIWNslhIOOqqroX3A_guLRCbc2wGZ_xAx2lonJPybaODDdvDLK3KyPD0",
+        // value: access_token,
         expiration: Date.now() + (expires_in - 20) * 1000,
       };
       localStorage.setItem(TOKEN_KEY, JSON.stringify(newToken));

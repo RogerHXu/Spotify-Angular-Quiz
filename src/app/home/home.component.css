@@ -1,9 +1,16 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrollbars */
+}
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   height: 100vh;
+  background-color: #1e1e1e; /* Set background color */
 }
 
 .select-container {
@@ -12,6 +19,61 @@
   justify-content: space-around;
   gap: 40px;
 }
+
+.select-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff; /* Set text color */
+}
+
+label {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+select {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(224, 224, 224); /* Set select background color */
+  color: #0a0909; /* Set select text color */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+select:hover {
+  background-color: #444; /* Set hover background color */
+  transform: scale(1.05); /* Add hover effect */
+}
+
 .submit-button {
-  margin-top: -200px;
+  margin-top: -30px; /* Adjust margin */
+  padding: 15px 30px; /* Add padding */
+  font-size: 18px;
+  background-color: #1db954; /* Set button background color */
+  color: #ffffff; /* Set button text color */
+  border: none;
+  border-radius: 25px; /* Add border radius */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #17a049; /* Set hover background color */
+  transform: scale(1.05); /* Add hover effect */
+  animation: pulse 1.5s infinite; /* Add pulsating animation */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
