@@ -1,13 +1,17 @@
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
 * {
     box-sizing: border-box;
   }
-  
   
   .music-container {
     font-family: sans-serif;
     background-color: #181818;
     border-radius: 8px;
-    box-shadow: 0 3px 10px 0 rgba(186, 184, 184, 0.6);
     display: flex;
     position: relative;
     justify-content:space-between;
@@ -16,7 +20,53 @@
     z-index: 10;
     width: 230px;
     height: 350px;
+    color: rgb(88 199 250 / 0%);
   }
+
+  
+.music-container::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate)
+    , #36f646, #1d8afd 43%, #9c11ff);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 4.5s linear infinite;
+}
+
+.music-container::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
+  transition: opacity .5s;
+  animation: spin 4.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
 
   .music-info {
     position: relative;

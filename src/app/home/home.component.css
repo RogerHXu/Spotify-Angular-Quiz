@@ -13,6 +13,12 @@ html {
   background-color: #1e1e1e; /* Set background color */
 }
 
+.loading{
+  color: wheat;
+  font-size: 18px;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
 .select-container {
   display: flex;
   align-items: center;
@@ -30,6 +36,7 @@ html {
 label {
   font-size: 18px;
   margin-bottom: 8px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 select {
@@ -37,15 +44,17 @@ select {
   font-size: 16px;
   border-radius: 10px;
   border: none;
-  background-color: rgb(224, 224, 224); /* Set select background color */
+  background-color: rgb(233, 233, 233); /* Set select background color */
   color: #0a0909; /* Set select text color */
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
+  outline: none;
 }
 
 select:hover {
-  background-color: #444; /* Set hover background color */
+  background-color: #1db954; /* Set hover background color */
   transform: scale(1.05); /* Add hover effect */
+  color: white
 }
 
 .submit-button {

@@ -5,6 +5,7 @@ h5 {
   color: #fff;
   transition: transform 0.5s ease-in-out;
   animation: pulsate 1.5s infinite;
+  font-family:Arial, Helvetica, sans-serif;
 }
 .main {
   height: 100vh;
@@ -57,9 +58,10 @@ h5 {
   background-color: #1db954; /* Spotify's brand color for the button */
   color: #fff;
   padding: 10px 20px;
+  margin-top: 30px;
   border: none;
   border-radius: 25px;
-  font-size: 23px;
+  font-size: 21px;
   cursor: pointer;
   /* transition: transform 0.5s ease-in-out;
   animation: pulsate 1.5s infinite; */
@@ -76,64 +78,3 @@ h5 {
     transform: scale(1);
   }
 }
-/* body,
-html {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden; 
-} */
-
-/* .drop-area {
-  border: #ccc dashed 2px;
-  padding: 20px 10px;
-  box-sizing: border-box;
-  margin-top: 15px;
-  display: flex;
-}
-
-:host {
-  display: block;
-  background-color: #fafafa;
-  padding: 15px;
-  margin: 20px;
-  box-sizing: border-box;
-}
-.submit-button {
-  margin: 0 auto;
-}
-.artist-card {
-  background-color: lightblue;
-  /* Add other artist-specific styles */
-/* }
-.track-card {
-  background-color: lightgreen;
-  /* Add other track-specific styles */
-/* }
-.main {
-  margin: 60px;
-  box-sizing: border-box;
-  overflow: auto;
-}
-
-.container {
-  margin-top: 60px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-} */
-
-/* .tracks-row {
-  display: flex;
-  flex-direction: row;
-}
-
-.artists-column {
-  margin-top: 40px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-} 
- */

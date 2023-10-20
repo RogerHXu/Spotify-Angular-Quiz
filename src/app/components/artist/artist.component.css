@@ -30,4 +30,5 @@
   bottom: 20px; /* Adjust the bottom position as needed */
   left: 50%;
   transform: translateX(-50%);
+  font-family:Arial, Helvetica, sans-serif;
 }
