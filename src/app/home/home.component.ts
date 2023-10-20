@@ -7,6 +7,7 @@ import { DataService } from "src/track-data.service";
 const AUTH_ENDPOINT =
   "https://nuod0t2zoe.execute-api.us-east-2.amazonaws.com/FT-Classroom/spotify-auth-token";
 const TOKEN_KEY = "whos-who-access-token";
+const GENRE_KEY = "genre-key"
 
 @Component({
   selector: "app-home",
@@ -45,7 +46,7 @@ export class HomeComponent implements OnInit {
     console.log("Sending request to AWS endpoint");
     request(AUTH_ENDPOINT).then(({ access_token, expires_in }) => {
       const newToken = {
-        value: "BQDbTuqZxOjxse29z-uey5Okr2q8Buj-a9MquPBUZ46M5IFjtiRTmOtQ2yDEMoS1gIKxcVL78X6WWuqWkJn1tzDcGbHq747Z-ilnC--_NwB-LM_tdZw",
+        value: "BQCfVPne6esUR7RV9feUCmZ2HX4_nqBpGAHlmZlHH6j4meQXEL2swcThoS4Wgs8wrPPqGDd5DhgMFyCrMy3XXUS7z1NoiLHPDJFytiBKjnD4k5wNk2Q",
         expiration: Date.now() + (expires_in - 20) * 1000,
       };
       localStorage.setItem(TOKEN_KEY, JSON.stringify(newToken));
@@ -99,12 +100,21 @@ export class HomeComponent implements OnInit {
 
   loadGenres = async (t: any) => {
     this.configLoading = true;
+    const storedGenreData = localStorage.getItem(GENRE_KEY);
+    if (storedGenreData) {
+      const storedGenres = JSON.parse(storedGenreData);
+      this.genres = storedGenres
+      this.configLoading = false;
+      return;
+    }
+    
     const response = await fetchFromSpotify({
       token: t,
       endpoint: "recommendations/available-genre-seeds",
     });
     // console.log(response);
     this.genres = response.genres;
+    localStorage.setItem(GENRE_KEY, JSON.stringify(this.genres));
     this.configLoading = false;
   };
 

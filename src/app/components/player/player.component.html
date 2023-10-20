@@ -2,12 +2,11 @@
   <div class="music-info">
     <div
       id="droppedArtistArray"
+      class="artist-list"
       cdkDropList
       [cdkDropListSortingDisabled]="true"
-
       [cdkDropListData]="droppedArtistArray"
       cdkDropListConnectedTo="arrayArtistData"
-      class="artist-list"
       (cdkDropListDropped)="drop($event)"
     >
       <app-artist

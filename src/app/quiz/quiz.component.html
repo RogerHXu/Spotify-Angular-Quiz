@@ -2,21 +2,11 @@
   <!-- Artist Items -->
   <div class="flex-row">
     <div class="artist-container">
-      <div
-        id="arrayArtistData"
-        *ngIf="arrayArtistData"
-        class="artists-column"
-        cdkDropList
-        [cdkDropListData]="arrayArtistData"
-        cdkDropListConnectedTo="droppedArtistArray"
-        (cdkDropListDropped)="drop($event)"
-      >
-        <app-artist
-          *ngFor="let artist of arrayArtistData"
-          [trackData]="artist"
-          cdkDrag
-          [cdkDragData]="artist"
-        ></app-artist>
+      <div id="arrayArtistData"  class="artists-column" *ngIf="arrayArtistData" cdkDropList
+        [cdkDropListData]="arrayArtistData" cdkDropListConnectedTo="droppedArtistArray"
+        (cdkDropListDropped)="drop($event)">
+        <app-artist *ngFor="let artist of arrayArtistData" [trackData]="artist" cdkDrag
+          [cdkDragData]="artist"></app-artist>
       </div>
     </div>
     <!-- Track Items -->
@@ -24,11 +14,7 @@
 
     <div class="track-container">
       <div class="container">
-        <app-player
-          *ngFor="let track of arrayTrackData"
-          [trackData]="track"
-          (callQuiz)="getAnswerFromPlayer($event)"
-        >
+        <app-player *ngFor="let track of arrayTrackData" [trackData]="track" (callQuiz)="getAnswerFromPlayer($event)">
         </app-player>
       </div>
     </div>
@@ -39,14 +25,7 @@
   <!-- Artist Items -->
 
   <app-modal [showModal]="showModal" (closeModal)="onCloseModal()">
-    <app-win-card
-      *ngIf="isWinnerCard"
-      [scoreValue]="score"
-      (playButtonClicked)="onPlayButtonClicked()"
-    ></app-win-card>
-    <app-lose-card
-      *ngIf="!isWinnerCard"
-      (playButtonClicked)="onPlayButtonClicked()"
-    ></app-lose-card>
+    <app-win-card *ngIf="isWinnerCard" [scoreValue]="score" (playButtonClicked)="onPlayButtonClicked()"></app-win-card>
+    <app-lose-card *ngIf="!isWinnerCard" (playButtonClicked)="onPlayButtonClicked()"></app-lose-card>
   </app-modal>
 </main>
