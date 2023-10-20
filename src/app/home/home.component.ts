@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
     console.log("Sending request to AWS endpoint");
     request(AUTH_ENDPOINT).then(({ access_token, expires_in }) => {
       const newToken = {
-        value: access_token,
+        value: "BQDbTuqZxOjxse29z-uey5Okr2q8Buj-a9MquPBUZ46M5IFjtiRTmOtQ2yDEMoS1gIKxcVL78X6WWuqWkJn1tzDcGbHq747Z-ilnC--_NwB-LM_tdZw",
         expiration: Date.now() + (expires_in - 20) * 1000,
       };
       localStorage.setItem(TOKEN_KEY, JSON.stringify(newToken));
@@ -128,17 +128,18 @@ export class HomeComponent implements OnInit {
       endpoint: `search?q=genre%3A${this.selectedGenre}&type=track&market=US&limit=50`,
     });
     // console.log(response);
-    const tracks = await this.mapSpotifyResponseToTracks(response);
+    let tracks = await this.mapSpotifyResponseToTracks(response);
+    tracks = this.removeNoPreviewUrl(tracks);
     const uniqueTracks = this.removeDuplicate(tracks);
     const shuffled = this.shuffleArr(uniqueTracks, this.selectedArtist);
     console.log(shuffled);
-    if (this.shuffleArr.length > 0) {
+    console.log(shuffled.length)
+    if (shuffled.length >= this.selectedArtist) {
       this.dataService.setStoredData(shuffled, this.selectedSong);
       this.router.navigate(["/quiz"]);
     } else {
-      console.log("No data available for quiz");
+      alert("There aren't enough available songs in the selected genre to create a quiz!")
     }
-    //maybe implement some sort of logic to make sure the number of songs in shuffle is always >= selecteArtist
   };
 
   removeDuplicate(tracks: any) {
@@ -149,5 +150,9 @@ export class HomeComponent implements OnInit {
       else unique.add(key);
       return true;
     });
+  }
+
+  removeNoPreviewUrl(tracks: any){
+    return tracks.filter((track: { preview_url: null; }) => track.preview_url !== null)
   }
 }

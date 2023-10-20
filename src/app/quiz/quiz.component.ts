@@ -59,6 +59,7 @@ export class QuizComponent implements OnInit {
           this.trackData.selectedTracks
         );
         this.arrayArtistData = [...data.trackData];
+        this.arrayArtistData = this.shuffleArr(this.arrayArtistData)
       }
     );
   }
@@ -72,12 +73,6 @@ export class QuizComponent implements OnInit {
   }
 
   checkWinner() {
-    /*if (this.droppedArtistArray.length === this.arrayTrackData.length) {
-      const isAllItemsExist = this.droppedArtistArray.every((artist) => {
-        return this.arrayTrackData.some(
-          (track) => track.trackId === artist.trackId
-        );
-      });*/
     let results = this.answerChecks.map((r) => {
       return Object.values(r)[0];
     });
@@ -102,14 +97,8 @@ export class QuizComponent implements OnInit {
 
       console.log("You lost! Number of items do not match.");
     }
-  } /*else {
-      this.toggleModal();
-      this.isWinnerCard = false;
-      // Set the score to 0 in local storage when not all items match
-      this.score = 0;
-      localStorage.setItem("score", "0");
-      console.log("You lost! Number of items do not match.");
-    }*/
+    Howler.unload();
+  } 
 
   onPlayButtonClicked() {
     console.log("Clicked from quiz Component");
@@ -144,17 +133,6 @@ export class QuizComponent implements OnInit {
     }
   }
 
-  // drop(event: CdkDragDrop<TrackData[]>) {
-  //   if (event.previousContainer === event.container) {
-  //     moveItemInArray(
-  //       event.container.data,
-  //       event.previousIndex,
-  //       event.currentIndex
-  //     );
-  //   } else {
-  //     this.droppedArtistArray = [event.item.data];
-  //   }
-  // }
 
   getAnswerFromPlayer($event: { [key: string]: boolean }) {
     const i = this.answerChecks.findIndex(
@@ -165,5 +143,14 @@ export class QuizComponent implements OnInit {
     } else {
       this.answerChecks[i] = $event;
     }
+  }
+
+  shuffleArr(array: any) {
+    const newArr = array.slice();
+    for (var i = newArr.length - 1; i > 0; i--) {
+      var rand = Math.floor(Math.random() * (i + 1));
+      [newArr[i], newArr[rand]] = [newArr[rand], newArr[i]];
+    }
+    return newArr
   }
 }

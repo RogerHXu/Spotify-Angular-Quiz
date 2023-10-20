@@ -55,6 +55,8 @@ export class PlayerComponent implements OnInit {
       (this.sourceUrl =
         this.trackData != undefined ? this.trackData.preview_url : "");
     this.title = this.trackData != undefined ? this.trackData.trackName : "";
+    this.answer = { [this.trackData.trackId]: false };
+    this.callQuiz.emit(this.answer);
   }
 
   public toggleState() {
