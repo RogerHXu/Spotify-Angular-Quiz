@@ -7,7 +7,7 @@ import { DataService } from "src/track-data.service";
 const AUTH_ENDPOINT =
   "https://nuod0t2zoe.execute-api.us-east-2.amazonaws.com/FT-Classroom/spotify-auth-token";
 const TOKEN_KEY = "whos-who-access-token";
-const GENRE_KEY = "genre-key"
+const GENRE_KEY = "genre-key";
 
 @Component({
   selector: "app-home",
@@ -103,11 +103,11 @@ export class HomeComponent implements OnInit {
     const storedGenreData = localStorage.getItem(GENRE_KEY);
     if (storedGenreData) {
       const storedGenres = JSON.parse(storedGenreData);
-      this.genres = storedGenres
+      this.genres = storedGenres;
       this.configLoading = false;
       return;
     }
-    
+
     const response = await fetchFromSpotify({
       token: t,
       endpoint: "recommendations/available-genre-seeds",
@@ -143,12 +143,14 @@ export class HomeComponent implements OnInit {
     const uniqueTracks = this.removeDuplicate(tracks);
     const shuffled = this.shuffleArr(uniqueTracks, this.selectedArtist);
     console.log(shuffled);
-    console.log(shuffled.length)
+    console.log(shuffled.length);
     if (shuffled.length >= this.selectedArtist) {
       this.dataService.setStoredData(shuffled, this.selectedSong);
       this.router.navigate(["/quiz"]);
     } else {
-      alert("There aren't enough available songs in the selected genre to create a quiz!")
+      alert(
+        "There aren't enough available songs in the selected genre to create a quiz!"
+      );
     }
   };
 
@@ -162,7 +164,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  removeNoPreviewUrl(tracks: any){
-    return tracks.filter((track: { preview_url: null; }) => track.preview_url !== null)
+  removeNoPreviewUrl(tracks: any) {
+    return tracks.filter(
+      (track: { preview_url: null }) => track.preview_url !== null
+    );
   }
 }

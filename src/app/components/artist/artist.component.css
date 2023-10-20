@@ -30,5 +30,17 @@
   bottom: 20px; /* Adjust the bottom position as needed */
   left: 50%;
   transform: translateX(-50%);
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+}
+/* Media query for reducing size by 40% on smaller screens */
+@media (max-width: 768px) {
+  .artist-card {
+    width: 100px; /* Reduce width by 40% */
+    height: 90px; /* Reduce height by 40% */
+  }
+
+  .artist-name {
+    width: 85px; /* Reduce width by 40% */
+    bottom: 10px; /* Adjust the bottom position as needed */
+  }
 }
